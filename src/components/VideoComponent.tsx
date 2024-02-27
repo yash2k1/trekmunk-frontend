@@ -5,7 +5,7 @@ const VideoComponent = () => {
     <div
       className={cn(
         "h-[550px]",
-        "relative max-w-full md:h-screen overflow-hidden brightness-[30%] -z-10"
+        "relative max-w-full md:h-screen overflow-hidden brightness-[60%] lg:brightness-[30%] -z-10"
       )}
       
     >
