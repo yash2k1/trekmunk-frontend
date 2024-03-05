@@ -14,7 +14,11 @@ import { Button } from '../../ui/button';
 import { usePathname } from 'next/navigation'
 import { DrawerClose } from '@/components/ui/drawer';
 
-const AdminMenu = () => {
+interface AdminMenuProps {
+  changeCurrentRoute: (input: string) => void;
+}
+
+const AdminMenu: React.FC<AdminMenuProps> = ({ changeCurrentRoute }) => {
   // const isMobile = useMediaQuery("(max-width: 500px)");
   const router = useRouter();
   const pathname = "/" + (usePathname().split('/')[2] || "");
@@ -135,7 +139,7 @@ const AdminMenu = () => {
                         //  if title is option  
 
                         item?.routes?.map((btn) => {
-
+                          ((btn.path === pathname)&&(btn.title === "button"))?changeCurrentRoute(btn.name):"Dashboard"
                           return (
                             <div key={btn.id} >
                               {(btn.title === "option") ?
@@ -152,6 +156,7 @@ const AdminMenu = () => {
                                     </AccordionTrigger>
                                     {
                                       btn.options?.map((option) => {
+                                        (option.path === pathname)?changeCurrentRoute(option.name):"";
                                         return (
                                           <AccordionContent key={option.id}>
                                             <DrawerClose className='w-full'>
@@ -175,6 +180,8 @@ const AdminMenu = () => {
 
 
                                 :
+                                
+
                                 //  if title is buttons  
                                 <>
                                   <DrawerClose className='w-full'>
